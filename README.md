@@ -19,22 +19,25 @@ python setup.py build
 python setup.py install
 ```
 
-###Generate the TFRecord files, used for training:
+##Generate the TFRecord files, used for training:
 ```
 python xml_to_csv.py # this will generate labels.csv files
 python generate_tfrecord.py --csv_input=images\train_labels.csv --image_dir=images\train --output_path=train.record
 python generate_tfrecord.py --csv_input=images\test_labels.csv --image_dir=images\test --output_path=test.record
 ```
-###Train:
+
+##Train:
 ```
 python train.py --logtostderr --train_dir=training_frcnn/ --pipeline_config_path=training_frcnn/faster_rcnn_inception_v2_pets.config
 ```
-###Export Inference Graph:
+
+##Export Inference Graph:
 ```
 python export_inference_graph.py --input_type image_tensor --pipeline_config_path training_frcnn/faster_rcnn_inception_v2_pets.config --trained_checkpoint_prefix training_frcnn/model.ckpt-XXXX --output_directory inference_graph
 ```
 where “XXXX” in “model.ckpt-XXXX” located in training folder
-###Eval:
+
+##Eval:
 ```
 python eval.py --logtostderr  --pipeline_config_path=training_frcnn/faster_rcnn_inception_v2_pets.config  --checkpoint_dir=inference_graph_frcnn/ --eval_dir=evals/
 ```
