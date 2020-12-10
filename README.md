@@ -2,11 +2,12 @@
 
 ## Brief Summary
 Clone the full TensorFlow object detection repository located at https://github.com/tensorflow/models & extract all the files to models\research\object_detection
+Download the images & training data from: https://drive.google.com/file/d/1eFUsFYc4R-4_TOq_rrXvCD-3leyxHjIY/view?usp=sharing and extract it to models\research\object_detection
 ```
 conda create -n tensorflow pip python=3.6
 activate tensorflow
 conda install -c anaconda protobuf
-pip install --ignore-installed --upgrade tensorflow-gpu==1.15
+pip install --ignore-installed --upgrade tensorflow-gpu==1.14
 pip install pillow lxml Cython contextlib2 jupyter matplotlib pandas opencv-python scipy tf_slim pycocotools-windows lvis
 ```
 
@@ -19,9 +20,8 @@ python setup.py build
 python setup.py install
 ```
 
-Generate the TFRecord files, used for training:
+Prepare for training(already done) - Generate the TFRecord files, used for training:
 ```
-python xml_to_csv.py # this will generate labels.csv files
 python generate_tfrecord.py --csv_input=images\train_labels.csv --image_dir=images\train --output_path=train.record
 python generate_tfrecord.py --csv_input=images\test_labels.csv --image_dir=images\test --output_path=test.record
 ```
@@ -40,4 +40,9 @@ where “XXXX” in “model.ckpt-XXXX” located in training folder
 Eval:
 ```
 python eval.py --logtostderr  --pipeline_config_path=training_frcnn/faster_rcnn_inception_v2_pets.config  --checkpoint_dir=inference_graph_frcnn/ --eval_dir=evals/
+```
+
+Test object detection:
+```
+python Object_detection_image.py file_path
 ```
