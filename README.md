@@ -1,4 +1,4 @@
-# How To Train an Object Detection Classifier for Multiple Objects Using TensorFlow (GPU)
+# Traffic sign recognition TensorFlow
 
 ## Brief Summary
 Clone the full TensorFlow object detection repository located at https://github.com/tensorflow/models & extract all the files to models\research\object_detection
